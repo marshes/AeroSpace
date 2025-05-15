@@ -36,7 +36,64 @@ struct ResizeCommand: Command { // todo cover with tests
                 guard let first = candidates.first(where: { ($0.parent as! TilingContainer).orientation == orientation }) else { return false }
                 node = first
                 parent = first.parent as! TilingContainer
+            // add one sided resize cases
+            case .left:
+                orientation = .h
+                guard let first = candidates.first(where: { ($0.parent as! TilingContainer).orientation == orientation }) else { return false }
+                node = first
+                parent = first.parent as! TilingContainer
+                singleSided = true
+                
+                // Find the node to the left
+                if let index = parent.children.firstIndex(of: node), index > 0 {
+                    adjacentNode = parent.children[index - 1]
+                } else {
+                    return false // No left node to resize with
+                }
+                
+            case .right:
+                orientation = .h
+                guard let first = candidates.first(where: { ($0.parent as! TilingContainer).orientation == orientation }) else { return false }
+                node = first
+                parent = first.parent as! TilingContainer
+                singleSided = true
+                
+                // Find the node to the right
+                if let index = parent.children.firstIndex(of: node), index < parent.children.count - 1 {
+                    adjacentNode = parent.children[index + 1]
+                } else {
+                    return false // No right node to resize with
+                }
+                
+            case .top:
+                orientation = .v
+                guard let first = candidates.first(where: { ($0.parent as! TilingContainer).orientation == orientation }) else { return false }
+                node = first
+                parent = first.parent as! TilingContainer
+                singleSided = true
+                
+                // Find the node above
+                if let index = parent.children.firstIndex(of: node), index > 0 {
+                    adjacentNode = parent.children[index - 1]
+                } else {
+                    return false // No top node to resize with
+                }
+                
+            case .bottom:
+                orientation = .v
+                guard let first = candidates.first(where: { ($0.parent as! TilingContainer).orientation == orientation }) else { return false }
+                node = first
+                parent = first.parent as! TilingContainer
+                singleSided = true
+                
+                // Find the node below
+                if let index = parent.children.firstIndex(of: node), index < parent.children.count - 1 {
+                    adjacentNode = parent.children[index + 1]
+                } else {
+                    return false // No bottom node to resize with
+                }
         }
+
         let diff: CGFloat = switch args.units.val {
             case .set(let unit): CGFloat(unit) - node.getWeight(orientation)
             case .add(let unit): CGFloat(unit)
