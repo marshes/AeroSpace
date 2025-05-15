@@ -26,7 +26,7 @@ The dimension to resize is chosen by the first argument
 * `smart` changes width if the parent has horizontal orientation, and
 it changes height if the parent has vertical orientation
 * `smart-opposite` does resizes the opposite axis of smart
-Single sided resizes can be used to increase or decrease a single side of a node or window. It can also be configured to _shift_ a window by moving two opposite sides at the same time (example: `alt-shift-h = ['resize left +50', 'resize right -50']`)
+Single sided resizes can be used to increase or decrease a single side of a node or window. It can also be configured to _shift_ a window by moving two opposite sides at the same time (example: `alt-shift-h = ['resize left +50', 'resize right -50']`). _Shifting_ a window that shares an edge of the monitor will increase or decrease the window size based on the direction of the shift.
 * `left` changes just the left side
 * `right` changes just the right side
 * `top` changes just the top side
