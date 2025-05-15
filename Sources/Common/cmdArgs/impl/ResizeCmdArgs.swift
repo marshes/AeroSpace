@@ -9,7 +9,7 @@ public struct ResizeCmdArgs: CmdArgs {
             "--window-id": optionalWindowIdFlag(),
         ],
         arguments: [
-            newArgParser(\.dimension, parseDimension, mandatoryArgPlaceholder: "(smart|smart-opposite|width|height)"),
+            newArgParser(\.dimension, parseDimension, mandatoryArgPlaceholder: "(smart|smart-opposite|width|height|left|right|top|bottom)"),
             newArgParser(\.units, parseUnits, mandatoryArgPlaceholder: "[+|-]<number>"),
         ]
     )
@@ -32,6 +32,7 @@ public struct ResizeCmdArgs: CmdArgs {
     public enum Dimension: String, CaseIterable, Equatable, Sendable {
         case width, height, smart
         case smartOpposite = "smart-opposite"
+        case left, right, top, bottom
     }
 
     public enum Units: Equatable, Sendable {
