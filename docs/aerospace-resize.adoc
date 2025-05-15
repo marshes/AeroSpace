@@ -9,7 +9,7 @@ include::util/man-attributes.adoc[]
 == Synopsis
 [verse]
 // tag::synopsis[]
-aerospace resize [-h|--help] [--window-id <window-id>] (smart|smart-opposite|width|height) [+|-]<number>
+aerospace resize [-h|--help] [--window-id <window-id>] (smart|smart-opposite|width|height|left|right|top|bottom) [+|-]<number>
 
 // end::synopsis[]
 
@@ -26,6 +26,11 @@ The dimension to resize is chosen by the first argument
 * `smart` changes width if the parent has horizontal orientation, and
 it changes height if the parent has vertical orientation
 * `smart-opposite` does resizes the opposite axis of smart
+Single sided resizes can be used to increase or decrease a single side of a node or window. It can also be configured to _shift_ a window by moving two opposite sides at the same time (example: `alt-shift-h = ['resize left +50', 'resize right -50']`)
+* `left` changes just the left side
+* `right` changes just the right side
+* `top` changes just the top side
+* `bottom` changes just the bottom side
 
 Second argument controls how much the size changes
 
